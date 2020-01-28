@@ -1,0 +1,62 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+
+@model IEnumerable<Table_Urun>
+<script src="~/Content/js/jquery-1.10.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $(".urunal").click(function myfunction() {
+            alert("Ürün Sepete Eklenmiştir");
+        });
+    });
+</script>
+<div class="content">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="row">
+                    <div class="col-md-12 col-xs-6">
+                        <div class="products-dropdown open-dropdown">
+                            <span><i class="icon-515" title="515"></i>Kategoriler</span>
+                            <ul>
+                                <li><a href="#">Bilgisayar Ürünleri</a></li>
+                                <li><a href="#">Telefon Ürünleri</a></li>
+                                <li><a href="#">Tablet Ürünleri</a></li>
+                            </ul>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-9">
+                <div class="row" id="digerurunler">
+                    @foreach (Table_Urun item in Model)
+                    {
+                        <div class="col-md-4 col-xs-6">
+                            <div class="product" style="background-color:aqua">
+                                <div class="product-cover">
+                                    <div class="product-details">
+                                        <h1>
+                                            <a style="font-size:small" href="#">@item.Adi</a>
+                                        </h1>
+                                    </div>
+                                    <div class="product-cover-hover"><span><a class="urunal" href="/Sepet/SepeteEkle/@item.Urunid">Sepete Ekle</a></span></div>
+                                    <img src="@item.Table_Resim.FirstOrDefault(x=>x.Urunid==item.Urunid).ResimYol" style=" height:300px" alt="product name" />
+                                </div>
+                                <div class="product-details">
+                                    <div class="product-price">
+                                        @item.Fiyat₺
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

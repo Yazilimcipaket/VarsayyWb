@@ -1,0 +1,57 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+@model IEnumerable<Table_Urun>
+<div class="content">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                @if (Model != null)
+                {
+                    
+                    <a href="/Sepet/QROlustur"><input type="button" class="btn btn-primary" value="Satın Al" /></a>
+                    <img src="@ViewBag.qr" />
+                }
+
+            </div>
+            <div class="col-md-9">
+                <div class="row" id="digerurunler">
+                    @{
+                        if (Model != null)
+                        {
+                            foreach (Table_Urun item in Model)
+                            {
+                                <div class="col-md-4 col-xs-6">
+                                    <div class="product" style="background-color:aqua">
+                                        <div class="product-cover">
+                                            <div class="product-details">
+                                                <h1>
+                                                    <a style="font-size:small" href="#">@item.Adi</a>
+                                                </h1>
+                                            </div>
+                                            <div class="product-cover-hover"><span><a href="#">Detay</a></span></div>
+                                            <img src="@item.Table_Resim.FirstOrDefault(x=>x.Urunid==item.Urunid).ResimYol" style=" height:300px" alt="product name" />
+                                        </div>
+                                        <div class="product-details">
+                                            <div class="product-price">
+                                                @item.Fiyat₺
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        }
+                        else
+                        {
+                            <h1>Sepet Boş</h1>
+                        }
+                    }
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
